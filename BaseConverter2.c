@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char inputNumber[100];  // To hold the input number as a string
+char inputNumber[100]; 
 int BaseInput, BaseOutput;
 
 void WelcomeMessage() {
@@ -21,10 +21,10 @@ void InputMessage() {
     scanf("%d", &BaseOutput);
 }
 
-// Function to convert fractional part from any base to decimal
+
 double FractionToDecimal(const char* fracPart, int base) {
     double fracValue = 0;
-    double basePower = base;  // To divide by increasing powers of the base
+    double basePower = base;  
     for (int i = 0; fracPart[i] != '\0'; i++) {
         int digit = (fracPart[i] >= 'A') ? (fracPart[i] - 'A' + 10) : (fracPart[i] - '0');
         fracValue += digit / basePower;
@@ -33,14 +33,13 @@ double FractionToDecimal(const char* fracPart, int base) {
     return fracValue;
 }
 
-// Function to convert decimal to binary with fractional part
+
 void DecimalToBinary(double decimalValue) {
     long intPart = (long)decimalValue;
     double fracPart = decimalValue - intPart;
     char binary[100] = "";  // To store binary result
     int i = 0;
 
-    // Convert integer part to binary
     if (intPart == 0) {
         printf("0");
     } else {
@@ -53,7 +52,6 @@ void DecimalToBinary(double decimalValue) {
         }
     }
 
-    // Convert fractional part to binary
     if (fracPart > 0) {
         printf(".");
         for (i = 0; i < 10 && fracPart > 0; i++) {  
@@ -69,14 +67,12 @@ void DecimalToBinary(double decimalValue) {
     printf("\n");
 }
 
-// Function to convert decimal to octal
 void DecimalToOctal(double decimalValue) {
     long intPart = (long)decimalValue;
     double fracPart = decimalValue - intPart;
     char octal[100] = "";
     int i = 0;
 
-    // Convert integer part to octal
     if (intPart == 0) {
         printf("0");
     } else {
@@ -89,10 +85,10 @@ void DecimalToOctal(double decimalValue) {
         }
     }
 
-    // Convert fractional part to octal
+    
     if (fracPart > 0) {
         printf(".");
-        for (i = 0; i < 10 && fracPart > 0; i++) {  // Limit to 10 octal places
+        for (i = 0; i < 10 && fracPart > 0; i++) { 
             fracPart *= 8;
             printf("%d", (int)fracPart);
             fracPart -= (int)fracPart;
@@ -101,7 +97,6 @@ void DecimalToOctal(double decimalValue) {
     printf("\n");
 }
 
-// Function to convert decimal to hexadecimal
 void DecimalToHexadecimal(double decimalValue) {
     long intPart = (long)decimalValue;
     double fracPart = decimalValue - intPart;
@@ -127,7 +122,6 @@ void DecimalToHexadecimal(double decimalValue) {
         }
     }
 
-    // Convert fractional part to hexadecimal
     if (fracPart > 0) {
         printf(".");
         for (i = 0; i < 10 && fracPart > 0; i++) {  // Limit to 10 hex places
@@ -150,11 +144,9 @@ int main() {
         WelcomeMessage();
         InputMessage();
 
-        // Split the input into integer and fractional parts
         char* integerPart = strtok(inputNumber, ".");
         char* fractionalPart = strtok(NULL, ".");
 
-        // Convert integer part to decimal
         long decimalIntValue = 0;
         double decimalFractionalValue = 0;
 
@@ -190,7 +182,6 @@ int main() {
 
         double totalDecimalValue = decimalIntValue + decimalFractionalValue;
 
-        // Output conversion
         switch (BaseOutput) {
             case 1:  // Decimal to Binary
                 DecimalToBinary(totalDecimalValue);
@@ -209,9 +200,8 @@ int main() {
                 break;
         }
 
-        // Ask if the user wants to continue
         printf("Do you want to convert another number? (y/n): ");
-        scanf(" %c", &continueLoop);  // Space before %c to consume newline
+        scanf(" %c", &continueLoop);  
     }
 
     printf("Good luck with MMW!\n");
